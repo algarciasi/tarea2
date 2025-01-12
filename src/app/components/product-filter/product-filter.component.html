@@ -1,0 +1,31 @@
+<form (ngSubmit)="onFilter()" class="filter-form">
+    <label>
+      Nombre:
+      <input type="text" [(ngModel)]="filters.name" name="name" />
+    </label>
+  
+    <label>
+      Categoría:
+      <input type="text" [(ngModel)]="filters.category" name="category" />
+    </label>
+  
+    <label>
+      Precio Máximo:
+      <input type="number" [(ngModel)]="filters.price" name="price" />
+    </label>
+  
+    <label>
+      Activo:
+      <select [(ngModel)]="filters.active" name="active">
+        <option value="">Todos</option>
+        <option value="true">Activo</option>
+        <option value="false">Inactivo</option>
+      </select>
+    </label>
+  
+    <div class="buttons">
+      <button type="submit">Filtrar</button>
+      <button type="button" (click)="onClear()">Limpiar</button>
+    </div>
+  </form>
+  

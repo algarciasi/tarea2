@@ -1,0 +1,13 @@
+<div class="product-card">
+  <div class="product-details">
+    <h3>{{ product.name }}</h3>
+    <p><strong>Descripción:</strong> {{ product.description }}</p>
+    <p><strong>Precio:</strong> {{ product.price }}€</p>
+    <p><strong>Categoría:</strong> {{ product.category }}</p>
+    <p><strong>Estado:</strong> {{ product.active ? 'Activo' : 'Inactivo' }}</p>
+  </div>
+  <div class="product-image">
+    <img [src]="product.image" alt="{{ product.name }}" />
+    <button (click)="onDelete()">Eliminar Producto</button>
+  </div>
+</div>

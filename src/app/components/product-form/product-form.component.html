@@ -1,0 +1,48 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-container">
+  <label>
+    Nombre:
+    <input type="text" formControlName="name" />
+    @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+      <small>Nombre requerido (mínimo 3 caracteres).</small>
+    }
+  </label>
+
+  <label>
+    Descripción:
+    <textarea formControlName="description"></textarea>
+    @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+      <small>Descripción requerida (mínimo 10 caracteres).</small>
+    }
+  </label>
+
+  <label>
+    Precio:
+    <input type="number" formControlName="price" />
+    @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+      <small>Precio requerido (debe ser mayor a 0).</small>
+    }
+  </label>
+
+  <label>
+    Categoría:
+    <input type="text" formControlName="category" />
+    @if (productForm.get('category')?.invalid && productForm.get('category')?.touched) {
+      <small>Categoría requerida.</small>
+    }
+  </label>
+
+  <label>
+    URL de la Imagen:
+    <input type="text" formControlName="image" />
+    @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
+      <small>URL requerida.</small>
+    }
+  </label>
+
+  <label>
+    Activo:
+    <input type="checkbox" formControlName="active" />
+  </label>
+
+  <button type="submit" [disabled]="productForm.invalid">Añadir Producto</button>
+</form>

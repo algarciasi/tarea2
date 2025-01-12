@@ -1,0 +1,24 @@
+<h2>Listado de productos de la API</h2>
+<hr>
+<div>
+  @if (filteredProducts.length > 0) {
+    <ul>
+      @for (product of filteredProducts; track product._id) {
+        <li>
+          <app-product-card [product]="product" (delete)="onDeleteProduct($event)"></app-product-card>
+        </li>
+      }
+    </ul>
+  } @else {
+  <p>Sin productos disponibles.</p>
+  }
+</div>
+
+<hr>
+<h2>Alta Producto</h2>
+<hr>
+<app-product-form (addProduct)="addNewProduct($event)"></app-product-form>
+<hr>
+<h2>Filtro de busqueda</h2>
+<hr>
+<app-product-filter (filterProducts)="filterProducts($event)"></app-product-filter>
