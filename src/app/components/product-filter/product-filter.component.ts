@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./product-filter.component.css']
 })
 export class ProductFilterComponent {
-  @Output() filterProducts = new EventEmitter<any>(); // Emite los filtros al componente padre
+  @Output() filterProducts = new EventEmitter<any>(); // Envía los filtros al componente padre
 
   filters = {
     name: '',

@@ -24,45 +24,60 @@ import { ProductFilterComponent } from '../product-filter/product-filter.compone
 export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
   filteredProducts: IProduct[] = [];
+  currentFilters: any = {}; // Almacena los filtros actuales
 
   constructor(private productService: ProductServiceService) {}
 
   ngOnInit(): void {
     this.loadProducts();
+    this.currentFilters = {
+      name: '',
+      category: '',
+      price: null,
+      active: '', 
+    };
   }
 
   loadProducts(): void {
     this.productService.getProducts().subscribe(
       (data: IProduct[]) => {
         this.products = data;
+        this.filteredProducts = [...data]; // Inicializa la lista filtrada
       },
       (error) => {
-        console.error('Error fetching products:', error);
+        console.error('Error buscando productos:', error);
       }
     );
   }
 
   onDeleteProduct(productId: string): void {
-    this.products = this.products.filter(
-      (product) => product._id !== productId
-    );
+    this.products = this.products.filter((product) => product._id !== productId);
+    this.applyFilters(); // Aplica los filtros actuales
   }
 
   addNewProduct(product: IProduct): void {
-    this.products.push(product); // Agrega el nuevo producto a la lista
+    this.products.push(product);
+    this.applyFilters(); // Aplica los filtros actuales
   }
 
   filterProducts(filters: any): void {
+    this.currentFilters = filters; // Guarda los filtros actuales
+    this.applyFilters(); // Aplica los filtros a la lista
+  }
+
+  applyFilters(): void {
     this.filteredProducts = this.products.filter((product) => {
       const matchesName =
-        !filters.name ||
-        product.name.toLowerCase().includes(filters.name.toLowerCase());
+        !this.currentFilters.name ||
+        product.name.toLowerCase().includes(this.currentFilters.name.toLowerCase());
       const matchesCategory =
-        !filters.category ||
-        product.category.toLowerCase().includes(filters.category.toLowerCase());
-      const matchesPrice = !filters.price || product.price <= filters.price;
+        !this.currentFilters.category ||
+        product.category.toLowerCase().includes(this.currentFilters.category.toLowerCase());
+      const matchesPrice =
+        !this.currentFilters.price || product.price <= this.currentFilters.price;
       const matchesActive =
-        filters.active === '' || product.active.toString() === filters.active;
+        this.currentFilters.active === '' ||
+        product.active === (this.currentFilters.active === 'true'); 
 
       return matchesName && matchesCategory && matchesPrice && matchesActive;
     });

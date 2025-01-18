@@ -1,20 +1,44 @@
 <section>
-  <header class="bg-dark text-white p-3">
-    <h1 class="text-center">Carga de Datos API</h1>
+  <!-- Barra de Navegación -->
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Productos</a>
+      <div>
+        <button class="btn btn-outline-light me-2" (click)="scrollTo('listado')">Inicio</button>
+        <button class="btn btn-outline-light me-2" (click)="scrollTo('alta')">Alta</button>
+        <button class="btn btn-outline-light" (click)="scrollTo('buscar')">Buscar</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Espaciado para compensar la barra fija -->
+  <div class="mt-5"></div>
+
+  <!-- Encabezado -->
+  <header id="listado" class="bg-dark text-white py-4 mb-4">
+    <h1 class="text-center">Listado de productos de la API</h1>
   </header>
+
+  <!-- Contenido Principal -->
   <main class="container my-4">
-    <!--<router-outlet></router-outlet>
-    <app-product-card></app-product-card>
-    <app-product-form></app-product-form>
-    <app-product-filter></app-product-filter>
-    -->
+    <!-- Aquí irán los componentes -->
     <app-product-list></app-product-list>
-    
-   
-    
-    
+
+    <!-- Alta Producto -->
+    <section id="alta" class="my-5">
+      <h2>Alta Producto</h2>
+      <app-product-form></app-product-form>
+    </section>
+
+    <!-- Filtro de Búsqueda -->
+    <section id="buscar" class="my-5">
+      <h2>Filtro de Búsqueda</h2>
+      <app-product-filter></app-product-filter>
+    </section>
   </main>
-  <footer class="bg-dark text-white p-2 text-center">
-    <p>Alberto Miguel Garcia Simó</p>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3 mt-4">
+    <small>© Alberto Miguel Garcia Simo</small>
   </footer>
 </section>

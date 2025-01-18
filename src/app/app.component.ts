@@ -8,10 +8,16 @@ import { ProductListComponent } from "./components/product-list/product-list.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProductCardComponent, ProductFilterComponent, ProductFormComponent, ProductListComponent],
+  imports: [ProductFilterComponent, ProductFormComponent, ProductListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'tarea2';
+  scrollTo(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

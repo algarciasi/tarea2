@@ -11,7 +11,7 @@ import { IProduct } from '../../interfaces/iproduct';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent {
-  @Output() addProduct = new EventEmitter<IProduct>(); // Emite el nuevo producto al padre
+  @Output() addProduct = new EventEmitter<IProduct>(); // Envía el nuevo producto al padre
   productForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -28,11 +28,11 @@ export class ProductFormComponent {
   onSubmit(): void {
     if (this.productForm.valid) {
       const newProduct: IProduct = {
-        _id: Date.now().toString(), // Genera un ID único basado en la marca de tiempo
+        _id: Date.now().toString(), // Genera un ID único 
         ...this.productForm.value
       };
       this.addProduct.emit(newProduct); // Envía el nuevo producto al componente padre
-      this.productForm.reset({ active: true }); // Limpia el formulario y establece el valor predeterminado de "active"
+      this.productForm.reset({ active: true }); // Limpia el formulario
     }
   }
 }

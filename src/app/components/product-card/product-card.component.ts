@@ -11,9 +11,9 @@ import { IProduct } from '../../interfaces/iproduct';
 })
 export class ProductCardComponent {
   @Input() product!: IProduct; // Recibe un producto desde el componente padre
-  @Output() delete = new EventEmitter<string>(); // Emite el id del producto a eliminar
+  @Output() delete = new EventEmitter<string>(); // Envía el id del producto a eliminar
 
   onDelete(): void {
-    this.delete.emit(this.product._id); // Emitir el id al componente padre
+    this.delete.emit(this.product._id); // Envía el id al componente padre
   }
 }

@@ -1,48 +1,100 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-container">
-  <label>
-    Nombre:
-    <input type="text" formControlName="name" />
-    @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
-      <small>Nombre requerido (mínimo 3 caracteres).</small>
-    }
-  </label>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div class="row">
+    <!-- Nombre -->
+    <div class="col-md-6 mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Nombre del producto"
+      />
+      @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+        <small class="text-danger">Error!!! Nombre incompleto (mínimo 3 caracteres).</small>
+      }
+    </div>
 
-  <label>
-    Descripción:
-    <textarea formControlName="description"></textarea>
-    @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
-      <small>Descripción requerida (mínimo 10 caracteres).</small>
-    }
-  </label>
+    <!-- Descripción -->
+    <div class="col-md-6 mb-3">
+      <label for="description" class="form-label">Descripción:</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+        placeholder="Descripción del producto"
+        rows="3"
+      ></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <small class="text-danger">Error!!! Descripción incompleta (mínimo 10 caracteres).</small>
+      }
+    </div>
 
-  <label>
-    Precio:
-    <input type="number" formControlName="price" />
-    @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
-      <small>Precio requerido (debe ser mayor a 0).</small>
-    }
-  </label>
+    <!-- Precio -->
+    <div class="col-md-4 mb-3">
+      <label for="price" class="form-label">Precio:</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        formControlName="price"
+        placeholder="Introduce el precio"
+      />
+      @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+        <small class="text-danger">Error!!! Precio inválido (debe ser mayor a 0).</small>
+      }
+    </div>
 
-  <label>
-    Categoría:
-    <input type="text" formControlName="category" />
-    @if (productForm.get('category')?.invalid && productForm.get('category')?.touched) {
-      <small>Categoría requerida.</small>
-    }
-  </label>
+    <!-- Categoría -->
+    <div class="col-md-4 mb-3">
+      <label for="category" class="form-label">Categoría:</label>
+      <input
+        type="text"
+        id="category"
+        class="form-control"
+        formControlName="category"
+        placeholder="Introduce la categoría"
+      />
+      @if (productForm.get('category')?.invalid && productForm.get('category')?.touched) {
+        <small class="text-danger">Categoría vacía.</small>
+      }
+    </div>
 
-  <label>
-    URL de la Imagen:
-    <input type="text" formControlName="image" />
-    @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
-      <small>URL requerida.</small>
-    }
-  </label>
+    <!-- URL de la Imagen -->
+    <div class="col-md-4 mb-3">
+      <label for="image" class="form-label">URL de la Imagen:</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        formControlName="image"
+        placeholder="Introduce la URL de la imagen"
+      />
+      @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
+        <small class="text-danger">URL vacía.</small>
+      }
+    </div>
 
-  <label>
-    Activo:
-    <input type="checkbox" formControlName="active" />
-  </label>
+    <!-- Activo -->
+    <div class="col-md-12 mb-3">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          id="active"
+          class="form-check-input"
+          formControlName="active"
+        />
+        <label for="active" class="form-check-label">Activo</label>
+      </div>
+    </div>
+  </div>
 
-  <button type="submit" [disabled]="productForm.invalid">Añadir Producto</button>
+  <!-- Añadir Producto -->
+  <button
+    type="submit"
+    class="btn btn-primary w-100"
+    [disabled]="productForm.invalid"
+  >
+    Añadir Producto
+  </button>
 </form>
